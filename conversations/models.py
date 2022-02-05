@@ -7,7 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 
-class Conversation(models.Model):
+class Conversations(models.Model):
     uuid = models.UUIDField(unique=True, default=uuid.uuid4)
     user = models.ForeignKey(User, related_name="Sender", on_delete=models.CASCADE)
     from_number = PhoneNumberField(null=False, blank=False)
@@ -15,6 +15,6 @@ class Conversation(models.Model):
 
 
 class Message(models.Model):
-    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    conversation = models.ForeignKey(Conversations, on_delete=models.CASCADE)
     msg_content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)

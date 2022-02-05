@@ -21,4 +21,5 @@ from django_otp.forms import OTPAuthenticationForm
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
+    path('conversations/', include('conversations.urls')),
 ]

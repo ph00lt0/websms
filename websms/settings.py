@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'qrcode',
 
     'account',
-    'sms',
+    'conversations',
     "phonenumber_field"
 ]
 

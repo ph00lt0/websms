@@ -1,21 +1,20 @@
 from django.db import models
-from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
+import uuid
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 # Create your models here.
 
-class User:
-    username = models.CharField(50)
 
-class PhoneContacts(models.Model):
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be less than 15 characters!")
-    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True) # vali
-
+class Conversation(models.Model):
+    uuid = models.UUIDField(unique=True, default=uuid.uuid4)
+    user = models.ForeignKey(User, related_name="Sender", on_delete=models.CASCADE)
+    from_number = PhoneNumberField(null=False, blank=False)
+    to_number = PhoneNumberField(null=False, blank=False)
 
 
 class Message(models.Model):
-    from_number = models.ForeignKey(User, related_name="Sender")
-    to_number = models.ForeignKey(User, related_name="Receiver")
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
     msg_content = models.TextField()
-    timestamp = models.DateTimeField(auto_now=True)
-
-
+    timestamp = models.DateTimeField(auto_now_add=True)

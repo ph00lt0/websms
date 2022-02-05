@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'otp_yubikey',
     'qrcode',
 
-    'account'
-    'sms'
+    'account',
+    'sms',
+    "phonenumber_field"
 ]
 
 MIDDLEWARE = [

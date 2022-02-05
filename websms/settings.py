@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'account'
     'twilio'
+    'sms'
 ]
 
 MIDDLEWARE = [

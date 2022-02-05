@@ -20,5 +20,6 @@ from django_otp.forms import OTPAuthenticationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('twillo/', include('twilio.urls')),
     path('accounts/', include('account.urls')),
 ]

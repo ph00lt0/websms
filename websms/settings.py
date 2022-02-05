@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)@mt_-w1^)!rmborsnu^n70z2lgezse&h6nr3hvert2y)&u3g$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hackaway.software', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+
+    'otp_twilio',
+    'otp_yubikey',
+    'qrcode',
+
+    'account'
     'sms'
 ]
 
@@ -48,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware'
 ]
 
 ROOT_URLCONF = 'websms.urls'

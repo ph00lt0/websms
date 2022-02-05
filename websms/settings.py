@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)@mt_-w1^)!rmborsnu^n70z2lgezse&h6nr3hvert2y)&u3g$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['hackaway.software']
+ALLOWED_HOSTS = ['hackaway.software', '127.0.0.1']
 
 
 # Application definition

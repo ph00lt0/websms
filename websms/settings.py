@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)@mt_-w1^)!rmborsnu^n70z2lgezse&h6nr3hvert2y)&u3g$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['hackaway.software']
 
 
 # Application definition
@@ -43,6 +43,9 @@ INSTALLED_APPS = [
 
     'otp_twilio',
     'otp_yubikey',
+    'qrcode',
+
+    'account'
 ]
 
 MIDDLEWARE = [

@@ -44,10 +44,10 @@ INSTALLED_APPS = [
     'otp_twilio',
     'otp_yubikey',
     'qrcode',
-    "phonenumber_field"
+    'twilio',
 
     'account',
-    'twilio',
+    'twilio_config',
     'conversations',
 ]
 

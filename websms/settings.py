@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
     'django_otp',
     'django_otp.plugins.otp_totp',
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'qrcode',
 
     'account'
+    'twilio'
 ]
 
 MIDDLEWARE = [

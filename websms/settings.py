@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'qrcode',
 
     'account'
+    'sms'
 ]
 
 MIDDLEWARE = [

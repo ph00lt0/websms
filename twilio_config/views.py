@@ -33,8 +33,8 @@ def configure(request):
               config = TwilioConfig.objects.create(sid, token, user=request.user)
 
 
-     context = {
+    context = {
         'config': config
-      }
+    }
 
     return render(request, 'twilio/config', context)

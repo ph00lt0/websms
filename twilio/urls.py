@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = 'account'
+app_name = 'twilio'
 
 urlpatterns = [
-    path('receive/', views.login, name='receive'),
+    path('receive/', views.receive, name='receive'),
+    path('config/', views.config, name='config'),
 ]

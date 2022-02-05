@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'otp_yubikey',
     'qrcode',
 
-    'account'
-    'twilio'
+    'account',
+    'twilio',
     'sms'
 ]
 

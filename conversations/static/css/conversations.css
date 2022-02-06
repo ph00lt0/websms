@@ -14,13 +14,17 @@ a:hover {
 
 input[type=text] {
     background-color: lightsalmon;
-  border: none;
-  color: white;
-  padding: 10px 16px;
-  text-decoration: none;
-  margin: 10px 2px;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    margin: 10px 2px;
 }
 
 .bt {
     width: 40%;
+}
+
+div.chat-box {
+    border: 2px solid orange;
 }

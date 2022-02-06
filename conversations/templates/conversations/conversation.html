@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Message</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}">
 </head>
 <body>
 
-<form method="POST">
-    {% csrf_token %}
+<div>
+    <div class="chat-box">
+        <ul>
+        {% for message in messages %}
+            <li>{{ message.msg_content }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="message">Chatbox</label><br>
+        <input type="text" id="message" name="message"><br>
+        <button>Send</button>
+    </form>
     <hr/>
-    <label for="message">Chatbox</label><br>
-    <input type="text" id="message" name="message"><br>
-    <button>Send</button>
-</form>
-
-
-<ul>
-    {% for message in messages %}
-        <li>{{ message.msg_content }}</li>
-    {% endfor %}
-</ul>
+    <br>
+    <a class="button" href="{% url 'conversations:conversations' %}">Back to conversation</a>
+</div>
 
 </body>
 </html>

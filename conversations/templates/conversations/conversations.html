@@ -2,41 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chatrooms</title>
+    <title>Chatroom's</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}">
 </head>
 <body>
 <h1>Conversations</h1>
 <a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
-<div class="add number">
+<div class="float-child-element">
     <hr>
     <form action="{% url 'conversations:conversations' %}" method="POST">
         {% csrf_token %}
-        <label for="fname">Your Number:</label><br>
-        <input type="text" id="from_number" name="from_number"><br>
-        <label for="fname">Receiver Number:</label><br>
-        <input type="text" id="to_number" name="to_number"><br>
-        <button class="bt">Connect</button>
+        <label for="from_number">Your Number:</label><br>
+        <select name="from_number" id="from_number" name="from_number">
+            {% for option in numbers %}
+                <option value="{{ option.number }}">{{ option.number }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="to_number">Receiver Number:</label><br>
+        <input type="tel" id="to_number" name="to_number"><br>
+        <button>Connect</button>
     </form>
     <hr/>
 </div>
 <h2>Your Contacts:</h2>
-
-<form action="{% url 'conversations:conversations' %}" method="POST">
-    {% csrf_token %}
-    <label for="from_number">Your Number:</label><br>
-    <select name="from_number" id="from_number" name="from_number">
-        {% for option in numbers %}
-            <option value="{{ option.number }}">{{ option.number }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <label for="to_number">Receiver Number:</label><br>
-    <input type="tel" id="to_number" name="to_number"><br>
-    <button>Connect</button>
-</form>
-
 <ul>
     {% for conversation in conversations %}
         <li><a href="{{ conversation.uuid }}">{{ conversation.internal }} <-> {{ conversation.external }}</a> </li>

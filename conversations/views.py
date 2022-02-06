@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from .models import Conversation, Message
-
-
-# Create your views here.
+from twilioconfig.models import TwilioConfig
+from twilio.rest import Client
+from django.http import HttpResponseRedirect
 
 
 def conversations(request):
@@ -30,13 +30,31 @@ def conversations(request):
 
 def conversation(request, uuid):
     message_list = Message.objects.filter(conversation_id=uuid, conversation__user=request.user)
-    if request.method == "POST":
-        message = request.POST['message']
-        messages = Message(msg_content=message, conversation_id=uuid)
-        messages.save()
-        message_list = Message.objects.filter(conversation__user=request.user, conversation_id=uuid)
+    config = None
+    configs = TwilioConfig.objects.filter(user=request.user)
+    if configs: # if some items are found in the database
+        if request.method == "POST":
+            message = request.POST['message']
+            config = TwilioConfig.objects.filter(user=request.user)[0]
 
-    context = {
-        'messages': message_list
-    }
-    return render(request, 'conversations/conversation.html', context)
+            client = Client(config.sid, config.token)
+            conversation = Conversation.objects.get(uuid=uuid)
+
+            twilio_message = client.messages.create(
+                body=message,
+                from_=str(conversation.from_number),  # should change to choice later
+                # media_url=['https://demo.twilio.com/owl.png'], could be added later for MMS
+                to=str(conversation.to_number)
+            )
+
+            messages = Message(msg_content=message, conversation_id=uuid)
+            messages.save()
+            message_list = Message.objects.filter(conversation__user=request.user, conversation_id=uuid)
+
+        context = {
+            'messages': message_list
+        }
+        return render(request, 'conversations/conversation.html', context)
+    else:
+        return HttpResponseRedirect(reverse('twilioconfig:configure'))
+

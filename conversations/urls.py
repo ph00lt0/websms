@@ -4,7 +4,6 @@ from . import views
 app_name = 'conversations'
 
 urlpatterns = [
-    path('conversations/', views.conversations, name='conversations'),
-    path('conversations/<uuid:uuid>/', views.conversation, name='conversation'),
-
+    path('', views.conversations, name='conversations'),
+    path('<uuid:uuid>/', views.conversation, name='conversation'),
 ]

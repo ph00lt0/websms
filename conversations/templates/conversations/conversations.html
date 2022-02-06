@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Conversations</h1>
+<hr>
 <div class="card">
     <a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
     <a class="button" href="{% url 'twilioconfig:configure' %}">Manage Twilio Authentication</a>
@@ -30,6 +31,7 @@
     <hr/>
 </div>
 <h2>Your Contacts:</h2>
+<p>click on any contact to open chat window with them.</p>
 <ul>
     {% for conversation in conversations %}
         <li><a href="{{ conversation.uuid }}">{{ conversation.internal }} <-> {{ conversation.external }}</a> </li>

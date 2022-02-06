@@ -1,0 +1,15 @@
+
+a.button {
+    background-color: darkorange;
+    border: 1px solid orangered;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: .25rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    background-color: orangered;
+}
+

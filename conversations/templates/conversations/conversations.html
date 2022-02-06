@@ -8,7 +8,10 @@
 </head>
 <body>
 <h1>Conversations</h1>
-<a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
+<div class="card">
+    <a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
+    <a class="button" href="{% url 'twilioconfig:configure' %}">Manage Twilio Authentication</a>
+</div>
 <div class="float-child-element">
     <hr>
     <form action="{% url 'conversations:conversations' %}" method="POST">

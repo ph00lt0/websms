@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twilio configuration</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/twilio.css' %}">
 </head>
 <body>
 <h1>Twilio configuration</h1>
@@ -21,7 +23,7 @@
 </form>
 <hr />
 <br>
-<a href="{% url 'conversations:conversations' %}">Back to Conversations</a>
+<a class="button" href="{% url 'conversations:conversations' %}">Back to Conversations</a>
 {% if error %}
 {{ error }}
 {% endif %}

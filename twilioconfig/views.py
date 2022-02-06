@@ -14,19 +14,19 @@ def receive(request):
         to_number = request.POST['To']
         message = request.POST['Body']
 
-        existing_conversations = Conversation.objects.filter(from_number=from_number, to_number=to_number)
+        existing_conversations = Conversation.objects.filter(from_number=external, to_number=internal)
         if existing_conversations:
             conversation = existing_conversations[0]
         else:
             owners = PhoneOwnership.objects.filter(number=to_number)
             if owners:
-              conversation = Conversation(from_number=from_number, to_number=to_number, user=owners[0].user)
+              conversation = Conversation(from_number=external, to_number=internal, user=owners[0].user)
               conversation.save()
             else:
                return HttpResponse("Bad request: phone number not owned", status=400)
 
         # store message
-        messages = Message(msg_content=message, conversation=conversation)
+        messages = Message(msg_content=message, outward=False, conversation=conversation)
         messages.save()
 
         return HttpResponse("Message received", status=200)

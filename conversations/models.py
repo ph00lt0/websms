@@ -10,11 +10,12 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Conversation(models.Model):
     uuid = models.UUIDField(unique=True, default=uuid.uuid4, primary_key=True)
     user = models.ForeignKey(User, related_name="owner", on_delete=models.CASCADE)
-    from_number = PhoneNumberField(null=False, blank=False)
-    to_number = PhoneNumberField(null=False, blank=False)
+    internal = PhoneNumberField(null=False, blank=False)
+    external = PhoneNumberField(null=False, blank=False)
 
 
 class Message(models.Model):
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
     msg_content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    outward = models.BooleanField(default=True)

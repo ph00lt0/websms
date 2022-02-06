@@ -11,8 +11,13 @@
 <form action="{% url 'twilioconfig:configure' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="sid" placeholder="SID" value="{{ config.sid }}">
-    <input type="password" name="token" placeholder="Token" value="{{ config.sid }}">
+    <input type="password" name="token" placeholder="Token" value="{{ config.token }}">
     <button>Submit</button>
+</form>
+
+<form action="{% url 'twilioconfig:update_numbers' %}" method="POST">
+    {% csrf_token %}
+    <button>Update numbers</button>
 </form>
 <hr />
 {% if error %}

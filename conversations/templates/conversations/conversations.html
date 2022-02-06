@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Chatrooms</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/conversations.css' %}">
 </head>
 <body>
 <h1>Conversations</h1>
+<a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
+<div class="add number">
+    <hr>
+    <form action="{% url 'conversations:conversations' %}" method="POST">
+        {% csrf_token %}
+        <label for="fname">Your Number:</label><br>
+        <input type="text" id="from_number" name="from_number"><br>
+        <label for="fname">Receiver Number:</label><br>
+        <input type="text" id="to_number" name="to_number"><br>
+        <button class="bt">Connect</button>
+    </form>
+    <hr/>
+</div>
+<h2>Your Contacts:</h2>
 
 <form action="{% url 'conversations:conversations' %}" method="POST">
     {% csrf_token %}

@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
     <title>Login</title>
 </head>
+
+<html lang="en">
+
 <body>
-<h1>Login</h1>
-<a href="{% url 'account:sign_up' %}">Sign Up</a>
-<hr />
-<form action="{% url 'account:login' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="user" placeholder="User Name">
-    <input type="password" name="password" placeholder="Password">
-    <button>Login</button>
-</form>
-<hr />
+{% if user.is_authenticated %}
+<div class="card">
+    <h1 class="card-title">Hello {{ user.username }}!</h1>
+        <p>Here you can manage your account. At the moment all you can do is either 'log out'
+            or go to your 'conversations'.</p>
+    <div class="card-action">
+        <br>
+        <a class="button" href="{% url 'account:logout' %}">Log Out</a>
+        <a class="button" href="{% url 'conversations:conversations' %}">Open Conversations</a>
+    </div>
+</div>
+
+{% else %}
+
+    <h1 class="heading1">Login</h1>
+    <p>If you <u>already have an account</u> enter your username and password to the fields below.<br>
+        Otherwise click the <u>'Register for account'</u> button to register for a new account.</p>
+
+    <hr />
+    <form action="{% url 'account:login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="user" placeholder="User Name">
+        <input type="password" name="password" placeholder="Password">
+        <button>Login</button>
+    </form>
+    <hr />
+    <br>
+    <a class="button" href="{% url 'account:sign_up' %}">Register for account</a>
+
+{% endif %}
+
+
 {% if error %}
-{{ error }}
+    {{ error }}
 {% endif %}
 </body>
 </html>

@@ -10,9 +10,9 @@ from .models import TwilioConfig, PhoneOwnership
 @csrf_exempt
 def receive(request):
     if request.method == "POST":
-        from_number = request.POST['From'] #change to form
-        to_number = request.POST['To']
-        message = request.POST['Body']
+        from_number = request.form['From']
+        to_number = request.form['To']
+        message = request.form['Body']
 
         existing_conversations = Conversation.objects.filter(external=from_number, internal=to_number)
         if existing_conversations:

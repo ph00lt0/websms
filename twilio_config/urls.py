@@ -5,5 +5,5 @@ app_name = 'twilio_config'
 
 urlpatterns = [
     path('receive/', views.receive, name='receive'),
-    path('config/', views.configure, name='config'),
+    path('config/', views.configure, name='configure'),
 ]

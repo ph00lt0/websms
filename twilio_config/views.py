@@ -37,4 +37,4 @@ def configure(request):
         'config': config
     }
 
-    return render(request, 'twilio/config', context)
+    return render(request, 'twilio_config/configure', context)

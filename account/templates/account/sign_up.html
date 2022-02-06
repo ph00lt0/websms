@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+</head>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +22,8 @@
     <button>Continue</button>
 </form>
 <hr />
+<br>
+<a class="button" href="{% url 'account:login' %}">Back to Login</a>
 {% if error %}
 {{ error }}
 {% endif %}

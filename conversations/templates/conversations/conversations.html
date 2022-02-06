@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+</head>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +11,7 @@
 </head>
 <body>
 <h1>Conversations</h1>
-<a href="{% url 'account:login' %}">Back to Account</a>
+<a class="button" href="{% url 'account:login' %}">Back to Account</a><br><br>
 <hr>
 <form action="{% url 'conversations:conversations' %}" method="POST">
     {% csrf_token %}

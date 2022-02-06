@@ -22,7 +22,7 @@
 {% else %}
 
     <h1 class="heading1">Login</h1>
-    <a class="button" href="{% url 'account:sign_up' %}">Sign Up</a><br>
+
     <hr />
     <form action="{% url 'account:login' %}" method="POST">
         {% csrf_token %}
@@ -31,6 +31,8 @@
         <button>Login</button>
     </form>
     <hr />
+    <br>
+    <a class="button" href="{% url 'account:sign_up' %}">Register for account</a>
 
 {% endif %}
 

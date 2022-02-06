@@ -25,9 +25,14 @@
 
 <form action="{% url 'conversations:conversations' %}" method="POST">
     {% csrf_token %}
-    <label for="fname">Your Number:</label><br>
-    <input type="tel" id="from_number" name="from_number"><br>
-    <label for="fname">Receiver Number:</label><br>
+    <label for="from_number">Your Number:</label><br>
+    <select name="from_number" id="from_number" name="from_number">
+        {% for option in numbers %}
+            <option value="{{ option.number }}">{{ option.number }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="to_number">Receiver Number:</label><br>
     <input type="tel" id="to_number" name="to_number"><br>
     <button>Connect</button>
 </form>

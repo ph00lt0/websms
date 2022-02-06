@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twilio add phone number</title>
+</head>
+<body>
+<h1>Twilio add phone number</h1>
+<hr />
+<form method="post">
+    {% csrf_token %}
+    <label for="number">Select number</label>
+    <select name="number" id="number">
+        {% for option in options %}
+            <option value="{{ option.phone_number }}">{{ option.phone_number }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Buy">
+</form>
+<hr />
+{% if error %}
+    {{ error }}
+{% endif %}
+</body>
+</html>

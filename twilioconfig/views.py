@@ -88,3 +88,26 @@ def configure(request):
 
     return render(request, 'configure.html', context)
 
+
+def obtain_number(request):
+    config = None
+    configs = TwilioConfig.objects.filter(user=request.user)
+    if configs: # if some items are found in the database
+        config = TwilioConfig.objects.filter(user=request.user)[0]
+        client = Client(config.sid, config.token)
+
+        if request.method == "POST":
+            incoming_phone_number = client.incoming_phone_numbers.create(
+                phone_number=request.POST['number'],
+            )
+#             description solution in the documentation does not work.
+            return updateNumbers(request)
+        else:
+            local = client.available_phone_numbers('GB').local.list(contains='+44',limit=20)
+            context = {
+                'options': local
+            }
+            return render(request, 'obtain.html', context)
+    else:
+        return HttpResponseRedirect(reverse('twilioconfig:configure'))
+

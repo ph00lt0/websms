@@ -1,12 +1,14 @@
 from django.shortcuts import render, reverse
 from .models import Conversation, Message
-from twilioconfig.models import TwilioConfig
+from twilioconfig.models import TwilioConfig, PhoneOwnership
 from twilio.rest import Client
 from django.http import HttpResponseRedirect
 
 
 def conversations(request):
     conversation_list = Conversation.objects.filter(user=request.user)
+    number_list = PhoneOwnership.objects.filter(user=request.user)
+
     if request.method == "POST":
         from_number = request.POST["from_number"]
         to_number = request.POST["to_number"]
@@ -23,7 +25,8 @@ def conversations(request):
 
             print(conversation_list)
     context = {
-        'conversations': conversation_list
+        'conversations': conversation_list,
+        'numbers': number_list
     }
     return render(request, 'conversations/conversations.html', context)
 

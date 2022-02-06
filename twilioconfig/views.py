@@ -42,7 +42,7 @@ def updateNumbers(request):
     PhoneOwnership.objects.filter(user=request.user).delete()
     for number in number_list:
           # Set the webhook for the phone number
-         incoming_phone_number = client.incoming_phone_numbers(number.sid).update(sms_url='https://hackaway.software/twilio/receive')
+         incoming_phone_number = client.incoming_phone_numbers(number.sid).update(sms_url='https://hackaway.software/twilio/receive/')
          phone = PhoneOwnership(user=request.user, number=number.phone_number)
          phone.save()
 

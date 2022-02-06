@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='conversation',
             name='internal',
-            field=phonenumber_field.modelfields.PhoneNumberField(default=1, max_length=128, region=None),
+            field=phonenumber_field.modelfields.PhoneNumberField(default='+44777777777', max_length=128, region=None),
             preserve_default=False,
         ),
         migrations.AddField(

@@ -6,6 +6,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate
 
 
+def account(request):
+    user = request.user
+    return render(request, "login.html", {'user': user})
+
+
 def login(request):
     context = {}
 
@@ -13,7 +18,7 @@ def login(request):
         user = authenticate(request, username=request.POST['user'], password=request.POST['password'])
         if user:
             dj_login(request, user)
-            return HttpResponseRedirect(reverse('conversations:index'))
+            return HttpResponseRedirect(reverse('account:login'))
         else:
             context = {
                 'error': 'Bad username or password.'

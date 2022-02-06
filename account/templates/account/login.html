@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+<body>
+{% if user.is_authenticated %}
+
+    <h1>Hello {{user.username}}!</h1>
+    <a href="{% url 'account:logout' %}">Log Out</a>
+    <a href="{% url 'conversations:conversations' %}">Open Conversations</a>
+
+{% else %}
+
+    <h1>Login</h1>
+    <a href="{% url 'account:sign_up' %}">Sign Up</a>
+    <hr />
+    <form action="{% url 'account:login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="user" placeholder="User Name">
+        <input type="password" name="password" placeholder="Password">
+        <button>Login</button>
+    </form>
+    <hr />
+
+{% endif %}
+
+
+{% if error %}
+    {{ error }}
+{% endif %}
+</body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
-<h1>Login</h1>
-<a href="{% url 'account:sign_up' %}">Sign Up</a>
-<hr />
-<form action="{% url 'account:login' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="user" placeholder="User Name">
-    <input type="password" name="password" placeholder="Password">
-    <button>Login</button>
-</form>
-<hr />
-{% if error %}
-{{ error }}
-{% endif %}
-</body>
 </html>

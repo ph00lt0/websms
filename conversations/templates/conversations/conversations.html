@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Conversations</h1>
-
+<a href="{% url 'account:login' %}">Back to Account</a>
+<hr>
 <form action="{% url 'conversations:conversations' %}" method="POST">
     {% csrf_token %}
     <label for="fname">Your Number:</label><br>

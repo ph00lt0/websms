@@ -1,9 +1,3 @@
-div.card {
-    border: 1px solid orange;
-    border-radius: .25rem;
-    padding: 15px;
-}
-
 a.button {
     background-color: darkorange;
     border: 1px solid orangered;
@@ -16,4 +10,17 @@ a.button {
 
 a:hover {
     background-color: orangered;
+}
+
+input[type=text] {
+    background-color: lightsalmon;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  margin: 10px 2px;
+}
+
+.bt {
+    width: 40%;
 }

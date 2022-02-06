@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-{% load static %}
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+    <title>Login</title>
 </head>
 
 <html lang="en">
@@ -22,6 +26,8 @@
 {% else %}
 
     <h1 class="heading1">Login</h1>
+    <p>If you <u>already have an account</u> enter your username and password to the fields below.<br>
+        Otherwise click the <u>'Register for account'</u> button to register for a new account.</p>
 
     <hr />
     <form action="{% url 'account:login' %}" method="POST">
@@ -41,9 +47,4 @@
     {{ error }}
 {% endif %}
 </body>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
 </html>

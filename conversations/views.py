@@ -10,14 +10,14 @@ def conversations(request):
     if request.method == "POST":
         from_number = request.POST["from_number"]
         to_number = request.POST["to_number"]
-        existing_conversations = Conversation.objects.filter(user=request.user, from_number=from_number,
-                                                             to_number=to_number)
+        existing_conversations = Conversation.objects.filter(user=request.user, internal=from_number,
+                                                             external=to_number)
         if existing_conversations:
             context = {
                 'error': 'already exist'
             }
         else:
-            contact = Conversation(from_number=from_number, to_number=to_number, user=request.user)
+            contact = Conversation(internal=from_number, external=to_number, user=request.user)
             contact.save()
             conversation_list = Conversation.objects.filter(user=request.user)
 
@@ -42,9 +42,9 @@ def conversation(request, uuid):
 
             twilio_message = client.messages.create(
                 body=message,
-                from_=str(conversation.from_number),  # should change to choice later
+                from_=str(conversation.internal),  # should change to choice later
                 # media_url=['https://demo.twilio.com/owl.png'], could be added later for MMS
-                to=str(conversation.to_number)
+                to=str(conversation.external)
             )
 
             messages = Message(msg_content=message, conversation_id=uuid)

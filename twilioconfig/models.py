@@ -8,3 +8,8 @@ class TwilioConfig(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     sid = models.CharField(max_length=40)
     token = models.CharField(max_length=40)
+
+
+class PhoneOwnership(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    number = PhoneNumberField(null=False, blank=False)

@@ -22,9 +22,19 @@
     <hr/>
 </div>
 <h2>Your Contacts:</h2>
+
+<form action="{% url 'conversations:conversations' %}" method="POST">
+    {% csrf_token %}
+    <label for="fname">Your Number:</label><br>
+    <input type="tel" id="from_number" name="from_number"><br>
+    <label for="fname">Receiver Number:</label><br>
+    <input type="tel" id="to_number" name="to_number"><br>
+    <button>Connect</button>
+</form>
+
 <ul>
     {% for conversation in conversations %}
-        <li><a href="{{ conversation.uuid }}">{{ conversation.to_number}}</a> </li>
+        <li><a href="{{ conversation.uuid }}">{{ conversation.internal }} <-> {{ conversation.external }}</a> </li>
     {% endfor %}
 </ul>
 

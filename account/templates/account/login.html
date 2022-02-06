@@ -1,16 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/account.css' %}">
+</head>
+
 <html lang="en">
+
 <body>
 {% if user.is_authenticated %}
-
-    <h1>Hello {{user.username}}!</h1>
-    <a href="{% url 'account:logout' %}">Log Out</a>
-    <a href="{% url 'conversations:conversations' %}">Open Conversations</a>
+<div class="card">
+    <h1 class="card-title">Hello {{ user.username }}!</h1>
+        <p>Here you can manage your account. At the moment all you can do is either 'log out'
+            or go to your 'conversations'.</p>
+    <div class="card-action">
+        <br>
+        <a class="button" href="{% url 'account:logout' %}">Log Out</a>
+        <a class="button" href="{% url 'conversations:conversations' %}">Open Conversations</a>
+    </div>
+</div>
 
 {% else %}
 
-    <h1>Login</h1>
-    <a href="{% url 'account:sign_up' %}">Sign Up</a>
+    <h1 class="heading1">Login</h1>
+    <a class="button" href="{% url 'account:sign_up' %}">Sign Up</a><br>
     <hr />
     <form action="{% url 'account:login' %}" method="POST">
         {% csrf_token %}

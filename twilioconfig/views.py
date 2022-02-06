@@ -21,7 +21,11 @@ def receive(request):
 
 
 def configure(request):
-    config = TwilioConfig.objects.filter(user=request.user)[0]
+    config = None
+    configs = TwilioConfig.objects.filter(user=request.user)
+    if configs: # if some items are found in the database
+        config = TwilioConfig.objects.filter(user=request.user)[0]
+
 
     if request.method == "POST":
          sid = request.POST['sid']

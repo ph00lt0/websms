@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'twilio',
 
     'account',
-    'twilio_config',
+    'twilioconfig',
     'conversations',
 ]
 

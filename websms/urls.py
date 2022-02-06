@@ -26,6 +26,3 @@ urlpatterns = [
     path('accounts/', include('account.urls')),
     path('conversations/', include('conversations.urls')),
 ]
-
-if settings.DEBUG:
-    urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -17,7 +17,7 @@ def conversations(request):
                 'error': 'already exist'
             }
         else:
-            contact = Conversation(from_number=internal, to_number=external, user=request.user)
+            contact = Conversation(internal=from_number, external=to_number, user=request.user)
             contact.save()
             conversation_list = Conversation.objects.filter(user=request.user)
 

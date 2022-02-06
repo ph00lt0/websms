@@ -6,6 +6,9 @@ from django.http import HttpResponseRedirect
 
 
 def conversations(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('account:login'))
+
     conversation_list = Conversation.objects.filter(user=request.user)
     number_list = PhoneOwnership.objects.filter(user=request.user)
 
@@ -32,6 +35,9 @@ def conversations(request):
 
 
 def conversation(request, uuid):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('account:login'))
+
     message_list = Message.objects.filter(conversation_id=uuid, conversation__user=request.user)
     config = None
     configs = TwilioConfig.objects.filter(user=request.user)

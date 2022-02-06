@@ -35,6 +35,9 @@ def receive(request):
 
 
 def updateNumbers(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('account:login'))
+
     config = TwilioConfig.objects.filter(user=request.user)[0]
     client = Client(config.sid, config.token)
     number_list = client.incoming_phone_numbers.list()
@@ -53,6 +56,9 @@ def updateNumbers(request):
 
 
 def configure(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('account:login'))
+
     config = None
     configs = TwilioConfig.objects.filter(user=request.user)
     if configs: # if some items are found in the database
@@ -90,6 +96,9 @@ def configure(request):
 
 
 def obtain_number(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('account:login'))
+
     config = None
     configs = TwilioConfig.objects.filter(user=request.user)
     if configs: # if some items are found in the database

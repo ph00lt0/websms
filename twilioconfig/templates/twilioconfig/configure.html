@@ -8,7 +8,7 @@
 <body>
 <h1>Twilio configuration</h1>
 <hr />
-<form action="{% url 'twilio_config:configure' %}" method="POST">
+<form action="{% url 'twilioconfig:configure' %}" method="POST">
     {% csrf_token %}
     <input type="text" name="sid" placeholder="SID" value="{{ config.sid }}">
     <input type="password" name="token" placeholder="Token" value="{{ config.sid }}">
